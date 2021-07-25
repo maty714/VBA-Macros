@@ -1,0 +1,111 @@
+Option Explicit
+
+Sub BP_Entry()
+
+Dim Cll As Range
+Dim NameRange As Range
+Dim LastRowIndex As Integer
+Dim RowIndex As Integer
+Dim Lrow As Integer, Entry_Lrow As Integer, Next_Entry_Range As Range
+Set NameRange = Range("A7", Range("A" & Rows.Count).End(xlUp))
+''Set Next_Entry_Range = Range("A1").Value
+Dim JE_Array(1 To 11) As String
+Dim i As Byte
+LastRowIndex = NameRange.Row - 1 + NameRange.Rows.Count
+
+Application.ScreenUpdating = False
+
+ 
+JE_Array(1) = "Payments for Claims"
+JE_Array(2) = "BP ERROR REPORT TRANSFERRED TO BEAM MONEY GRAM"
+JE_Array(3) = "BP ERROR REPORT TRANSFERRED TO BEAM"
+JE_Array(4) = "Total"
+JE_Array(5) = "Payments for TRAVELERS"
+JE_Array(6) = "Payments for Commercial Company"
+JE_Array(7) = "Payments for Commercial Company/ NICO"
+JE_Array(8) = "Return to Chase - Letter to Cashiers"
+JE_Array(9) = "Payments for HOMEOWNERS Company"
+JE_Array(10) = "Moneygram Outstanding Item"
+JE_Array(11) = "Payments for BOAT Company"
+
+ 
+For RowIndex = LastRowIndex To 7 Step -1
+    If Application.CountA(Rows(RowIndex)) <= 1 Then
+        Rows(RowIndex).Delete
+    End If
+Next RowIndex
+
+For Each Cll In NameRange
+    If Len(Cll) < 1 Then
+
+        Cll.Offset(-1, 0).Copy
+        Cll.PasteSpecial xlPasteValues
+
+    End If
+Next Cll
+
+For Each Cll In NameRange
+    Cll.Copy
+    Cll.Offset(, 4).PasteSpecial
+Next Cll
+
+'Brings everything from columns G-E to A
+Lrow = Range("A" & Rows.Count).End(xlUp).Row
+Range("E7:G" & Lrow).Cut Range("A" & Lrow + 1)
+
+Set NameRange = Range("A7", Range("A" & Rows.Count).End(xlUp))
+LastRowIndex = NameRange.Row - 1 + NameRange.Rows.Count
+For RowIndex = LastRowIndex To 7 Step -1
+    If Application.CountA(Rows(RowIndex)) <= 1 Then
+        Rows(RowIndex).Delete
+    End If
+Next RowIndex
+
+
+Sheet5.Range("$A$6:$C$6").AutoFilter Field:=1, Criteria1:=JE_Array(1)
+    Lrow = Range("A" & Rows.Count).End(xlUp).Row
+    Range("A7:C" & Lrow).Copy
+    Sheet3.Range("A1").PasteSpecial
+
+
+For i = 2 To 11
+
+Sheet5.Range("$A$6:$C$6").AutoFilter Field:=1, Criteria1:=JE_Array(i)
+
+
+
+        Lrow = Range("A" & Rows.Count).End(xlUp).Row
+        Entry_Lrow = Sheet3.Range("A" & Rows.Count).End(xlUp).Row
+        
+        
+    If Lrow = 6 Then ' we choose this logic as the variable Lrow will be 6 if there
+                    '  are no other items below the headers when filtering for an item in the array
+       i = i + 1
+       Sheet5.Range("$A$6:$C$6").AutoFilter Field:=1, Criteria1:=JE_Array(i)
+       Lrow = Range("A" & Rows.Count).End(xlUp).Row
+       Range("A7:C" & Lrow).Copy
+       Sheet3.Range("A" & Entry_Lrow + 1).PasteSpecial
+    
+    Else
+        
+        
+        Sheet5.Range("$A$6:$C$6").AutoFilter Field:=1, Criteria1:=JE_Array(i)
+        Lrow = Range("A" & Rows.Count).End(xlUp).Row
+        Range("A7:C" & Lrow).Copy
+        Sheet3.Range("A" & Entry_Lrow + 1).PasteSpecial
+
+        
+
+    End If
+
+   
+
+Next i
+
+Sheet5.AutoFilter.ShowAllData
+Lrow = Sheet5.Range("A" & Rows.Count).End(xlUp).Row
+Sheet5.Range("A7:C" & Lrow).Clear
+
+Application.ScreenUpdating = True
+
+End Sub
