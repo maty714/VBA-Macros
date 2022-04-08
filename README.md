@@ -13,7 +13,7 @@ PAV was used to create multiple emails with information derived from a report an
 BP_Entry was used to take information from reports and format them into a Journal Entry. This was the second Macro I made.
 
 
-**Lessons Learned**
+**Lessons Learned:**
 
 Throughout my time learning code and creating these, I identifying three beginner mistakes all prevalent in the first macro (PAV)
 
