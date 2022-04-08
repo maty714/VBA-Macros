@@ -3,7 +3,7 @@
 This houses all projects made with VBA to help automate tasks at work
 
 **About:**
-These were the first programs I have ever built. After identifying streamlining issues at work, I decided to learn VBA through a Udemy course [Here](https://www.udemy.com/course/excel-vba-and-macros-course/). . These programs saved days of work.
+These were the first programs I have ever built. After identifying streamlining issues at work, I decided to learn VBA through a Udemy course [here](https://www.udemy.com/course/excel-vba-and-macros-course/). . These programs saved days of work.
 
 
 **Description:**
