@@ -21,4 +21,4 @@ Throughout my time learning code and creating these, I identifying three beginne
 2. Variable Reuse
 3. Proper comments
 
-
+I believe I got better with these over time when creating the second macro BP_Entry in which I was able to reuse variables, and have better naming convention for the variables.
