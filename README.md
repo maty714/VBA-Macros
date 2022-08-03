@@ -12,7 +12,7 @@ These were the first programs I have ever built. After identifying streamlining 
 
 2. BP_Entry was used to take information from reports and format them into a Journal Entry. This was the second Macro I made.
 
-3.Bank_Entry uses OOP to classify items from a bank statement and create a journal entry off of that information
+3. Bank_Entry uses OOP to classify items from a bank statement and create a journal entry off of that information
 
 **Lessons Learned:**
 
